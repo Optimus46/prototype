@@ -1,33 +1,37 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import "./App.css";
 import HeroSection from "./components/HeroSection";
-import Productcard from "./components/Productcard";
-import product from "./assets/dp_hero.png";
 import ProductsGrid from "./components/ProductsGrid";
 import FooterSection from "./components/FooterSection";
-import Testimonials from "./components/TestimonialCard";
 import TestimonialGrid from "./components/TestimonialGrid";
 import Navbar from "./components/Navbar";
 import Topbar from "./components/topbar";
+import AboutPage from "./components/AboutPage"; // <-- Create this component
 
+function HomePage() {
+  return (
+    <>
+      <HeroSection />
+      <ProductsGrid />
+      <TestimonialGrid />
+      <FooterSection />
+    </>
+  );
+}
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div>
-
-      
-        <Navbar />
-      <HeroSection />
-      
-      <ProductsGrid />
-      <TestimonialGrid />
-
-      <FooterSection />
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+      </Routes>
+    </Router>
   );
 }
 
